@@ -51,8 +51,8 @@ digraph dfd {
   { rank=same; d2; d3; llm }
   { rank=same; p2 }
   { rank=same; p3; d1 }
-  { rank=same; d4; p5; d5 }
-  { rank=same; p4; p6 }
+  { rank=same; d4; p5 }
+  { rank=same; p4; p6; d5 }
   { rank=same; analyst2; ext }
 
   // ---------- потоки ----------
@@ -77,8 +77,8 @@ digraph dfd {
   d4 -> p4      [label="вопросы,\nпредложение"]
   p4 -> analyst2 [label="вопросы,\nриски"]
   analyst -> p4 [label="ответы, решение,\nправка"]
-  p4 -> d3      [label="ответы"]
-  p4 -> p5      [label="подтверждённая\nправка"]
+  p4 -> d3      [taillabel="ответы", labeldistance=4, labelangle=-25]
+  p4 -> p5:e    [label="подтверждённая\nправка"]
 
   analyst -> p5 [label="ручная правка,\nимпорт, возврат"]
   d1 -> p5      [label="текущая ревизия"]

@@ -35,7 +35,7 @@ digraph c4_components {
 
     { rank=same; http; ws }
     { rank=same; workspace; dictation; worker; docs }
-    { rank=same; runner; roles; bpmn }
+    { rank=same; roles -> bpmn -> runner [style=invis] }
     { rank=same; llmc; sttc; repo }
   }
 

@@ -7,7 +7,7 @@
     "render": "node render.mjs",
     "pdf": "node make-pdf.mjs",
     "build": "node render.mjs && node make-pdf.mjs",
-    "check": "python3 check_readability.py"
+    "check": "node check-overlaps.mjs && python3 check_readability.py"
   },
   "devDependencies": {
     "@viz-js/viz": "^3.31.0",

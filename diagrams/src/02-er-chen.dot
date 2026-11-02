@@ -13,64 +13,62 @@ graph chen {
   edge  [fontname="Arial", fontsize=20, color="#222222", penwidth=1.3]
 
   diagram [pos="0.00,7.84!", shape=box, style="filled", fillcolor="#eef1ff", color="#2b4dff", penwidth=1.8, peripheries=1, margin="0.7,0.2", fontsize=19, label=<<B>ДИАГРАММА</B>>]
-  diagram_a0 [pos="1.10,9.44!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label=<<U>ID</U>>]
+  diagram_a0 [pos="2.34,8.72!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label=<<U>ID</U>>]
   diagram -- diagram_a0
-  diagram_a1 [pos="2.36,6.26!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="название"]
+  diagram_a1 [pos="2.40,6.28!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="название"]
   diagram -- diagram_a1
-  diagram_a2 [pos="-2.51,7.18!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="текущая ревизия"]
+  diagram_a2 [pos="-1.91,6.60!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="текущая ревизия"]
   diagram -- diagram_a2
-  diagram_a3 [pos="-3.32,8.30!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="редактируемость"]
+  diagram_a3 [pos="-3.39,7.84!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="редактируемость"]
   diagram -- diagram_a3
-  diagram_a4 [pos="-1.88,9.10!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", peripheries=2, label="причины\n«только чтение»"]
+  diagram_a4 [pos="-2.92,9.43!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", peripheries=2, label="причины\n«только чтение»"]
   diagram -- diagram_a4
-  diagram_a5 [pos="-0.59,10.01!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="дата изменения"]
+  diagram_a5 [pos="0.88,9.97!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="дата изменения"]
   diagram -- diagram_a5
 
   revision [pos="9.60,7.84!", shape=box, style="filled", fillcolor="#eef1ff", color="#2b4dff", penwidth=1.8, peripheries=2, margin="0.7,0.2", fontsize=19, label=<<B>РЕВИЗИЯ</B>>]
   revision_a0 [pos="7.26,8.72!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0"><TR><TD SIDES="B" BORDER="1" STYLE="dashed">номер</TD></TR></TABLE>>]
   revision -- revision_a0
-  revision_a1 [pos="8.33,9.88!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="BPMN XML с DI"]
+  revision_a1 [pos="8.39,9.99!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="BPMN XML с DI"]
   revision -- revision_a1
-  revision_a2 [pos="10.44,9.51!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="исходный XML"]
+  revision_a2 [pos="10.87,9.39!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="исходный XML"]
   revision -- revision_a2
-  revision_a3 [pos="12.48,9.01!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="источник"]
+  revision_a3 [pos="12.87,8.70!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="источник"]
   revision -- revision_a3
-  revision_a4 [pos="12.30,7.84!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="дата создания"]
+  revision_a4 [pos="12.05,7.10!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="дата создания"]
   revision -- revision_a4
 
   chat [pos="0.00,3.92!", shape=box, style="filled", fillcolor="#eef1ff", color="#2b4dff", penwidth=1.8, peripheries=1, margin="0.7,0.2", fontsize=19, label=<<B>ЧАТ</B>>]
-  chat_a0 [pos="1.94,5.14!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label=<<U>ID</U>>]
+  chat_a0 [pos="2.21,4.93!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label=<<U>ID</U>>]
   chat -- chat_a0
-  chat_a1 [pos="3.39,3.92!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="название"]
+  chat_a1 [pos="2.78,2.66!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="название"]
   chat -- chat_a1
-  chat_a2 [pos="-2.70,3.92!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="дата создания"]
+  chat_a2 [pos="-2.45,3.18!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="дата создания"]
   chat -- chat_a2
-  chat_a3 [pos="-2.36,5.50!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="дата удаления"]
+  chat_a3 [pos="-2.94,5.02!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="дата удаления"]
   chat -- chat_a3
 
   message [pos="0.00,0.00!", shape=box, style="filled", fillcolor="#eef1ff", color="#2b4dff", penwidth=1.8, peripheries=1, margin="0.7,0.2", fontsize=19, label=<<B>СООБЩЕНИЕ</B>>]
-  message_a0 [pos="1.94,1.22!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label=<<U>ID</U>>]
+  message_a0 [pos="1.91,1.24!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label=<<U>ID</U>>]
   message -- message_a0
-  message_a1 [pos="1.27,-2.04!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="порядковый номер"]
+  message_a1 [pos="1.70,-1.91!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="порядковый номер"]
   message -- message_a1
-  message_a2 [pos="-1.94,-1.22!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="вид"]
+  message_a2 [pos="-1.14,-1.59!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="вид"]
   message -- message_a2
-  message_a3 [pos="-3.34,-0.38!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="текст"]
+  message_a3 [pos="-3.19,-0.75!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="текст"]
   message -- message_a3
-  message_a4 [pos="-2.47,0.71!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", peripheries=2, label="привязки\nк элементам"]
+  message_a4 [pos="-2.70,1.47!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", peripheries=2, label="привязки\nк элементам"]
   message -- message_a4
 
   run [pos="7.20,0.00!", shape=box, style="filled", fillcolor="#eef1ff", color="#2b4dff", penwidth=1.8, peripheries=1, margin="0.7,0.2", fontsize=19, label=<<B>ЗАПРОС АГЕНТУ</B>>]
-  run_a0 [pos="6.36,1.67!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label=<<U>ID</U>>]
+  run_a0 [pos="6.19,1.63!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label=<<U>ID</U>>]
   run -- run_a0
-  run_a1 [pos="5.11,1.74!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="вид"]
+  run_a1 [pos="4.88,1.67!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="вид"]
   run -- run_a1
-  run_a2 [pos="4.91,0.93!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="статус"]
+  run_a2 [pos="4.81,0.82!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="статус"]
   run -- run_a2
-  run_a3 [pos="3.91,0.53!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="текущий этап"]
+  run_a3 [pos="7.61,1.92!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="ошибка"]
   run -- run_a3
-  run_a4 [pos="8.12,-1.65!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="ошибка"]
-  run -- run_a4
 
   round [pos="1.20,-7.28!", shape=box, style="filled", fillcolor="#eef1ff", color="#2b4dff", penwidth=1.8, peripheries=2, margin="0.7,0.2", fontsize=19, label=<<B>РАУНД УТОЧНЕНИЙ</B>>]
   round_a0 [pos="-0.87,-6.15!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0"><TR><TD SIDES="B" BORDER="1" STYLE="dashed">номер</TD></TR></TABLE>>]
@@ -99,13 +97,13 @@ graph chen {
   proposal -- proposal_a3
 
   preview [pos="16.80,4.76!", shape=box, style="filled", fillcolor="#eef1ff", color="#2b4dff", penwidth=1.8, peripheries=1, margin="0.7,0.2", fontsize=19, label=<<B>ПРЕДПРОСМОТР</B>>]
-  preview_a0 [pos="18.23,6.25!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label=<<U>ID</U>>]
+  preview_a0 [pos="16.56,6.51!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label=<<U>ID</U>>]
   preview -- preview_a0
-  preview_a1 [pos="20.06,4.15!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="XML кандидата"]
+  preview_a1 [pos="20.19,4.76!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="XML кандидата"]
   preview -- preview_a1
-  preview_a2 [pos="14.14,5.06!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", peripheries=2, label="изменённые\nэлементы"]
+  preview_a2 [pos="19.16,6.58!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", peripheries=2, label="изменённые\nэлементы"]
   preview -- preview_a2
-  preview_a3 [pos="14.53,6.40!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="устарел"]
+  preview_a3 [pos="14.57,5.97!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="устарел"]
   preview -- preview_a3
 
   artifact [pos="7.20,-8.12!", shape=box, style="filled", fillcolor="#eef1ff", color="#2b4dff", penwidth=1.8, peripheries=1, margin="0.7,0.2", fontsize=19, label=<<B>АРТЕФАКТ РОЛИ</B>>]
@@ -120,30 +118,30 @@ graph chen {
   artifact_a4 [pos="5.32,-6.86!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="факты (JSON)"]
   artifact -- artifact_a4
 
-  dictation [pos="15.18,-5.32!", shape=box, style="filled", fillcolor="#eef1ff", color="#2b4dff", penwidth=1.8, peripheries=2, margin="0.7,0.2", fontsize=19, label=<<B>ДИКТОВКА</B>>]
-  dictation_a0 [pos="14.26,-3.67!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="начало"]
+  dictation [pos="15.90,-5.32!", shape=box, style="filled", fillcolor="#eef1ff", color="#2b4dff", penwidth=1.8, peripheries=2, margin="0.7,0.2", fontsize=19, label=<<B>ДИКТОВКА</B>>]
+  dictation_a0 [pos="14.98,-3.67!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="начало"]
   dictation -- dictation_a0
-  dictation_a1 [pos="16.88,-7.23!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="последняя фраза"]
+  dictation_a1 [pos="18.26,-7.14!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="последняя фраза"]
   dictation -- dictation_a1
-  dictation_a2 [pos="14.26,-6.97!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", style="filled,dashed", label="длительность"]
+  dictation_a2 [pos="14.76,-6.91!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", style="filled,dashed", label="длительность"]
   dictation -- dictation_a2
-  dictation_a3 [pos="17.36,-3.63!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="итог"]
+  dictation_a3 [pos="18.30,-3.76!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="итог"]
   dictation -- dictation_a3
 
-  segment [pos="21.18,-5.32!", shape=box, style="filled", fillcolor="#eef1ff", color="#2b4dff", penwidth=1.8, peripheries=1, margin="0.7,0.2", fontsize=19, label=<<B>ФРАЗА ДИКТОВКИ</B>>]
-  segment_a0 [pos="21.18,-3.57!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label=<<U>ID</U>>]
+  segment [pos="22.50,-5.32!", shape=box, style="filled", fillcolor="#eef1ff", color="#2b4dff", penwidth=1.8, peripheries=1, margin="0.7,0.2", fontsize=19, label=<<B>ФРАЗА ДИКТОВКИ</B>>]
+  segment_a0 [pos="22.50,-3.57!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label=<<U>ID</U>>]
   segment -- segment_a0
-  segment_a1 [pos="23.62,-3.79!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="номер"]
+  segment_a1 [pos="24.94,-3.79!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="номер"]
   segment -- segment_a1
-  segment_a2 [pos="23.88,-5.32!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="интервал"]
+  segment_a2 [pos="25.20,-5.32!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="интервал"]
   segment -- segment_a2
-  segment_a2_0 [pos="25.72,-6.33!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="начало, мс"]
+  segment_a2_0 [pos="27.04,-6.33!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="начало, мс"]
   segment_a2 -- segment_a2_0
-  segment_a2_1 [pos="25.72,-4.31!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="конец, мс"]
+  segment_a2_1 [pos="27.04,-4.31!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="конец, мс"]
   segment_a2 -- segment_a2_1
-  segment_a3 [pos="21.18,-7.52!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="текст"]
+  segment_a3 [pos="22.50,-7.52!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="текст"]
   segment -- segment_a3
-  segment_a4 [pos="19.30,-4.06!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="статус"]
+  segment_a4 [pos="20.62,-4.06!", shape=ellipse, style="filled", fillcolor="white", color="#555555", margin="0.06,0.03", label="статус"]
   segment -- segment_a4
 
   r_rev [pos="4.80,7.84!", shape=diamond, style="filled", fillcolor="#fff6e0", color="#b07d00", penwidth=1.5, margin="0.06,0.04", fontsize=17, peripheries=2, label="хранит"]
@@ -195,17 +193,14 @@ graph chen {
   run -- r_art [ label=<<B>1</B>>]
   artifact -- r_art [ color="#222222:white:#222222", label=<<B>N</B>>]
 
-  r_dict [pos="11.19,-2.66!", shape=diamond, style="filled", fillcolor="#fff6e0", color="#b07d00", penwidth=1.5, margin="0.06,0.04", fontsize=17, peripheries=2, label="ведётся
+  r_dict [pos="11.55,-2.66!", shape=diamond, style="filled", fillcolor="#fff6e0", color="#b07d00", penwidth=1.5, margin="0.06,0.04", fontsize=17, peripheries=2, label="ведётся
 как"]
   run -- r_dict [ label=<<B>1</B>>]
   dictation -- r_dict [ color="#222222:white:#222222", label=<<B>1</B>>]
 
-  r_seg [pos="18.18,-5.32!", shape=diamond, style="filled", fillcolor="#fff6e0", color="#b07d00", penwidth=1.5, margin="0.06,0.04", fontsize=17, peripheries=1, label="состоит
+  r_seg [pos="19.20,-5.32!", shape=diamond, style="filled", fillcolor="#fff6e0", color="#b07d00", penwidth=1.5, margin="0.06,0.04", fontsize=17, peripheries=1, label="состоит
 из"]
   dictation -- r_seg [ label=<<B>1</B>>]
   segment -- r_seg [ color="#222222:white:#222222", label=<<B>N</B>>]
 
-  r_retry [pos="3.30,-1.57!", shape=diamond, style="filled", fillcolor="#fff6e0", color="#b07d00", penwidth=1.5, margin="0.06,0.04", fontsize=17, label="повторяет"]
-  run:w -- r_retry:n [label=<<B>1</B> <FONT POINT-SIZE="18">исходный</FONT>>]
-  run:s -- r_retry:e [label=<<B>N</B> <FONT POINT-SIZE="18">повтор</FONT>>]
 }
