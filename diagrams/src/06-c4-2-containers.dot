@@ -1,0 +1,42 @@
+// engine: dot
+// C4, уровень 2 — контейнеры: из каких запускаемых частей состоит schemix (Docker Compose).
+// Рассчитана на лист A4 альбомный.
+digraph c4_containers {
+  graph [rankdir=TB, fontname="Arial", fontsize=24, bgcolor="white", pad=0.3, nodesep=0.5, ranksep=0.75,
+         splines=spline, newrank=true,
+         label=<<B>C4 · Уровень 2. Контейнеры schemix</B><BR/><FONT POINT-SIZE="16">Container diagram · развёртывание: Docker Compose</FONT>>,
+         labelloc=t]
+  node  [fontname="Arial", fontsize=16, shape=box, style="rounded,filled", color="#00000033",
+         fontcolor="white", margin="0.22,0.14"]
+  edge  [fontname="Arial", fontsize=14, color="#555555", fontcolor="#333333", arrowsize=0.9, style=dashed]
+
+  analyst [fillcolor="#08427b", label=<<B>Аналитик</B><BR/><FONT POINT-SIZE="13">[Person]</FONT><BR/>Работает в браузере>]
+
+  subgraph cluster_schemix {
+    label=<<B>schemix</B>  <FONT POINT-SIZE="14">[Software System]</FONT>>; fontsize=18; fontcolor="#333333";
+    style="dashed,rounded"; color="#444444"; margin=16
+
+    spa [fillcolor="#1f6fb2", label=<<B>Веб-приложение</B><BR/><FONT POINT-SIZE="13">[React 19, TypeScript, bpmn-js 18]</FONT><BR/>Редактор схемы, чаты, история,<BR/>предпросмотры, голосовой ввод>]
+    web [fillcolor="#1f6fb2", label=<<B>Веб-сервер</B><BR/><FONT POINT-SIZE="13">[nginx 1.28]</FONT><BR/>Раздаёт сборку,<BR/>проксирует /api и WebSocket>]
+    api [fillcolor="#1f6fb2", label=<<B>API-приложение и worker агента</B><BR/><FONT POINT-SIZE="13">[Python 3.12, FastAPI]</FONT><BR/>HTTP API, поток событий,<BR/>семь ролей агента, BPMN-модуль>]
+    migrate [fillcolor="#1f6fb2", label=<<B>Миграции</B><BR/><FONT POINT-SIZE="13">[Alembic, разовый запуск]</FONT><BR/>alembic upgrade head>]
+    db [shape=cylinder, style="filled", fillcolor="#1f6fb2", label=<<B>База данных</B><BR/><FONT POINT-SIZE="13">[PostgreSQL 16]</FONT><BR/>Диаграммы, ревизии, чаты,<BR/>запросы агента, события>]
+    { rank=same; spa; web }
+    { rank=same; db; migrate }
+  }
+
+  llm [fillcolor="#666666", label=<<B>Провайдер<BR/>языковой модели</B><BR/><FONT POINT-SIZE="13">[внешняя система]</FONT><BR/>chat/completions>]
+  stt [fillcolor="#666666", label=<<B>Сервис<BR/>распознавания речи</B><BR/><FONT POINT-SIZE="13">[внешняя система]</FONT><BR/>/audio/transcriptions>]
+  { rank=same; api; llm }
+  { rank=same; db; stt }
+
+  analyst -> spa [label="  работает\l  в редакторе\l"]
+  analyst -> web [label="  открывает стенд\l  [HTTPS]\l"]
+  web -> spa [label="отдаёт\nсборку"]
+  spa -> web [label="команды, события\n[HTTPS, WebSocket]", constraint=false]
+  web -> api [label="  проксирует /api\l  [HTTP, WebSocket]\l"]
+  api -> db [label="  читает, пишет,\l  lease запросов\l  [SQL, psycopg 3]\l"]
+  migrate -> db [label="схема\n[SQL]"]
+  api -> llm [label="роли агента\n[HTTPS, JSON]"]
+  api -> stt [label="  фразы\l  диктовки\l  [HTTPS, WAV]\l"]
+}

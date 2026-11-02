@@ -1,0 +1,40 @@
+// engine: dot
+// Контекстная диаграмма (DFD уровня 0, нотация Гейна–Сарсона): система — один процесс,
+// вокруг внешние сущности и потоки данных между ними. Рассчитана на лист A4 альбомный.
+digraph context {
+  graph [rankdir=TB, fontname="Arial", fontsize=22, bgcolor="white", pad=0.3,
+         nodesep=0.5, ranksep=0.9, splines=spline,
+         label=<<B>Контекстная диаграмма schemix</B><BR/><FONT POINT-SIZE="15">DFD уровня 0, нотация Гейна–Сарсона</FONT>>,
+         labelloc=t]
+  node  [fontname="Arial", fontsize=17]
+  edge  [fontname="Arial", fontsize=15, color="#333333", arrowsize=0.9, penwidth=1.3]
+
+  // Внешние сущности: прямоугольник с жирной рамкой
+  analyst [shape=box, style="filled,bold", fillcolor="#eef1ff", color="#2b4dff", margin="0.5,0.18",
+           label=<<B>Аналитик</B><BR/><FONT POINT-SIZE="15">бизнес-аналитик, методолог</FONT>>]
+  llm     [shape=box, style="filled,bold", fillcolor="#f2f2f2", margin="0.4,0.16",
+           label=<<B>Провайдер<BR/>языковой модели</B><BR/><FONT POINT-SIZE="15">OpenAI-совместимый API</FONT>>]
+  stt     [shape=box, style="filled,bold", fillcolor="#f2f2f2", margin="0.4,0.16",
+           label=<<B>Сервис<BR/>распознавания речи</B><BR/><FONT POINT-SIZE="15">/audio/transcriptions</FONT>>]
+  ext     [shape=box, style="filled,bold", fillcolor="#f2f2f2", margin="0.4,0.16",
+           label=<<B>Внешние системы<BR/>моделирования</B><BR/><FONT POINT-SIZE="15">bpmn.io, Camunda, Sila Union</FONT>>]
+
+  // Процесс: скруглённый прямоугольник с номером
+  sys [shape=plain, label=<
+    <TABLE STYLE="ROUNDED" BORDER="2" CELLBORDER="0" CELLPADDING="9" BGCOLOR="white" COLOR="#000000">
+      <TR><TD><B>0</B></TD></TR>
+      <HR/>
+      <TR><TD><FONT POINT-SIZE="21"><B>schemix</B></FONT><BR/>ИИ-ассистент построения<BR/>BPMN-схем по описанию процесса</TD></TR>
+    </TABLE>>]
+
+  analyst -> sys [label="  описание процесса: текст,\l  .docx, .pdf, голос\l  файл BPMN для импорта\l  ручные правки схемы\l  ответы, решения\l"]
+  sys -> analyst [label="  BPMN-схема и история ревизий\l  вопросы с вариантами\l  предложения с рисками\l  замечания нормоконтроля\l  файлы BPMN, SVG, MD, DOCX, EPC\l"]
+
+  sys -> llm [label="  текст, роль\l  и JSON-схема\l"]
+  llm -> sys [label="  факты\l  с цитатами\l"]
+  sys -> stt [label="  аудио фразы\l"]
+  stt -> sys [label="  текст фразы\l"]
+  sys -> ext [label="  BPMN 2.0 XML,\l  EPC (XML)\l"]
+
+  { rank=same; llm; stt; ext }
+}
