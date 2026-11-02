@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="Definitions_ImportExport" targetNamespace="http://schemix.local/bpmn" exporter="schemix diagrams" exporterVersion="2">
+  <bpmn:collaboration id="Collab_ImportExport">
+    <bpmn:participant id="Pool_ImportExport" name="schemix: импорт и выгрузка BPMN-файла" processRef="Process_ImportExport" />
+    <bpmn:participant id="Participant_Ext" name="BPMN-редактор (bpmn.io, Camunda Modeler)" />
+    <bpmn:messageFlow id="Message_1" name="файл .bpmn" sourceRef="Participant_Ext" targetRef="T1" />
+    <bpmn:messageFlow id="Message_2" name="файл .bpmn" sourceRef="T8" targetRef="Participant_Ext" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_ImportExport" name="schemix: импорт и выгрузка BPMN-файла" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_ImportExport">
+      <bpmn:lane id="Lane_Analyst" name="Аналитик"><bpmn:flowNodeRef>S1</bpmn:flowNodeRef><bpmn:flowNodeRef>T1</bpmn:flowNodeRef><bpmn:flowNodeRef>T5</bpmn:flowNodeRef><bpmn:flowNodeRef>T6</bpmn:flowNodeRef><bpmn:flowNodeRef>T8</bpmn:flowNodeRef><bpmn:flowNodeRef>E1</bpmn:flowNodeRef></bpmn:lane>
+      <bpmn:lane id="Lane_Server" name="Сервер schemix"><bpmn:flowNodeRef>T2</bpmn:flowNodeRef><bpmn:flowNodeRef>G1</bpmn:flowNodeRef><bpmn:flowNodeRef>E2</bpmn:flowNodeRef><bpmn:flowNodeRef>G2</bpmn:flowNodeRef><bpmn:flowNodeRef>T3</bpmn:flowNodeRef><bpmn:flowNodeRef>T4</bpmn:flowNodeRef><bpmn:flowNodeRef>G3</bpmn:flowNodeRef><bpmn:flowNodeRef>T9</bpmn:flowNodeRef><bpmn:flowNodeRef>T7</bpmn:flowNodeRef></bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="S1" name="Есть файл BPMN"><bpmn:outgoing>Flow_1</bpmn:outgoing></bpmn:startEvent>
+    <bpmn:userTask id="T1" name="Загрузить файл на стартовой странице"><bpmn:incoming>Flow_1</bpmn:incoming><bpmn:outgoing>Flow_2</bpmn:outgoing></bpmn:userTask>
+    <bpmn:serviceTask id="T2" name="Разобрать XML и проверить по XSD OMG"><bpmn:incoming>Flow_2</bpmn:incoming><bpmn:outgoing>Flow_3</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="G1" name="XML корректен?"><bpmn:incoming>Flow_3</bpmn:incoming><bpmn:outgoing>Flow_4</bpmn:outgoing><bpmn:outgoing>Flow_5</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:endEvent id="E2" name="Импорт отклонён"><bpmn:incoming>Flow_4</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="G2" name="Схема в профиле редактора?"><bpmn:incoming>Flow_5</bpmn:incoming><bpmn:outgoing>Flow_6</bpmn:outgoing><bpmn:outgoing>Flow_7</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="T3" name="Привести схему к профилю редактора"><bpmn:incoming>Flow_6</bpmn:incoming><bpmn:outgoing>Flow_8</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="T4" name="Взять оригинал байт в байт, пометить «только чтение»"><bpmn:incoming>Flow_7</bpmn:incoming><bpmn:outgoing>Flow_9</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="G3" name=""><bpmn:incoming>Flow_8</bpmn:incoming><bpmn:incoming>Flow_9</bpmn:incoming><bpmn:outgoing>Flow_10</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="T9" name="Создать диаграмму, ревизию «импорт» и чат"><bpmn:incoming>Flow_10</bpmn:incoming><bpmn:outgoing>Flow_11</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="T5" name="Просмотреть схему в редакторе"><bpmn:incoming>Flow_11</bpmn:incoming><bpmn:outgoing>Flow_12</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="T6" name="Выбрать формат выгрузки"><bpmn:incoming>Flow_12</bpmn:incoming><bpmn:outgoing>Flow_13</bpmn:outgoing></bpmn:userTask>
+    <bpmn:serviceTask id="T7" name="Сформировать файл: BPMN, SVG, MD или DOCX"><bpmn:incoming>Flow_13</bpmn:incoming><bpmn:outgoing>Flow_14</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="T8" name="Скачать файл"><bpmn:incoming>Flow_14</bpmn:incoming><bpmn:outgoing>Flow_15</bpmn:outgoing></bpmn:userTask>
+    <bpmn:endEvent id="E1" name="Файл выгружен"><bpmn:incoming>Flow_15</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="S1" targetRef="T1"></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="T1" targetRef="T2"></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="T2" targetRef="G1"></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_4" name="нет" sourceRef="G1" targetRef="E2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">XML корректен?: нет</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_5" name="да" sourceRef="G1" targetRef="G2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">XML корректен?: да</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_6" name="да" sourceRef="G2" targetRef="T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Схема в профиле редактора?: да</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_7" name="нет" sourceRef="G2" targetRef="T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Схема в профиле редактора?: нет</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_8" sourceRef="T3" targetRef="G3"></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_9" sourceRef="T4" targetRef="G3"></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_10" sourceRef="G3" targetRef="T9"></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_11" sourceRef="T9" targetRef="T5"></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_12" sourceRef="T5" targetRef="T6"></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_13" sourceRef="T6" targetRef="T7"></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_14" sourceRef="T7" targetRef="T8"></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_15" sourceRef="T8" targetRef="E1"></bpmn:sequenceFlow>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_ImportExport">
+    <bpmndi:BPMNPlane id="Plane_ImportExport" bpmnElement="Collab_ImportExport">
+      <bpmndi:BPMNShape id="Pool_ImportExport_di" bpmnElement="Pool_ImportExport" isHorizontal="true" bioc:fill="#FFFFFF" bioc:stroke="#5B6573" color:background-color="#FFFFFF" color:border-color="#5B6573"><dc:Bounds x="0" y="0" width="1950" height="420" /><bpmndi:BPMNLabel color:color="#1F2933" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Analyst_di" bpmnElement="Lane_Analyst" isHorizontal="true" bioc:fill="#FFFFFF" bioc:stroke="#5B6573" color:background-color="#FFFFFF" color:border-color="#5B6573"><dc:Bounds x="30" y="0" width="1920" height="150" /><bpmndi:BPMNLabel color:color="#1F2933" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Server_di" bpmnElement="Lane_Server" isHorizontal="true" bioc:fill="#FFFFFF" bioc:stroke="#5B6573" color:background-color="#FFFFFF" color:border-color="#5B6573"><dc:Bounds x="30" y="150" width="1920" height="270" /><bpmndi:BPMNLabel color:color="#1F2933" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_Ext_di" bpmnElement="Participant_Ext" isHorizontal="true" bioc:fill="#FFFFFF" bioc:stroke="#5B6573" color:background-color="#FFFFFF" color:border-color="#5B6573"><dc:Bounds x="0" y="-140" width="1950" height="60" /><bpmndi:BPMNLabel color:color="#1F2933" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S1_di" bpmnElement="S1" bioc:fill="#E3EFE6" bioc:stroke="#5E8569" color:background-color="#E3EFE6" color:border-color="#5E8569"><dc:Bounds x="134.5" y="57" width="36" height="36" /><bpmndi:BPMNLabel color:color="#1F2933"><dc:Bounds x="87.5" y="99" width="130" height="34" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T1_di" bpmnElement="T1" bioc:fill="#ECE7F3" bioc:stroke="#7D6E9A" color:background-color="#ECE7F3" color:border-color="#7D6E9A"><dc:Bounds x="257.5" y="29" width="160" height="92" /><bpmndi:BPMNLabel color:color="#1F2933" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T2_di" bpmnElement="T2" bioc:fill="#E4EBF4" bioc:stroke="#5F7898" color:background-color="#E4EBF4" color:border-color="#5F7898"><dc:Bounds x="257.5" y="239" width="160" height="92" /><bpmndi:BPMNLabel color:color="#1F2933" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G1_di" bpmnElement="G1" isMarkerVisible="true" bioc:fill="#FFFFFF" bioc:stroke="#6E7A88" color:background-color="#FFFFFF" color:border-color="#6E7A88"><dc:Bounds x="497.5" y="260" width="50" height="50" /><bpmndi:BPMNLabel color:color="#1F2933"><dc:Bounds x="467.5" y="220" width="110" height="34" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="E2_di" bpmnElement="E2" bioc:fill="#F4E3E1" bioc:stroke="#9A5F58" color:background-color="#F4E3E1" color:border-color="#9A5F58"><dc:Bounds x="504.5" y="337" width="36" height="36" /><bpmndi:BPMNLabel color:color="#1F2933"><dc:Bounds x="457.5" y="379" width="130" height="34" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G2_di" bpmnElement="G2" isMarkerVisible="true" bioc:fill="#FFFFFF" bioc:stroke="#6E7A88" color:background-color="#FFFFFF" color:border-color="#6E7A88"><dc:Bounds x="682.5" y="260" width="50" height="50" /><bpmndi:BPMNLabel color:color="#1F2933"><dc:Bounds x="556.5" y="220" width="140" height="34" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T3_di" bpmnElement="T3" bioc:fill="#E4EBF4" bioc:stroke="#5F7898" color:background-color="#E4EBF4" color:border-color="#5F7898"><dc:Bounds x="812.5" y="173" width="160" height="92" /><bpmndi:BPMNLabel color:color="#1F2933" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T4_di" bpmnElement="T4" bioc:fill="#E4EBF4" bioc:stroke="#5F7898" color:background-color="#E4EBF4" color:border-color="#5F7898"><dc:Bounds x="812.5" y="305" width="160" height="92" /><bpmndi:BPMNLabel color:color="#1F2933" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G3_di" bpmnElement="G3" isMarkerVisible="true" bioc:fill="#FFFFFF" bioc:stroke="#6E7A88" color:background-color="#FFFFFF" color:border-color="#6E7A88"><dc:Bounds x="1052.5" y="260" width="50" height="50" /><bpmndi:BPMNLabel color:color="#1F2933" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T9_di" bpmnElement="T9" bioc:fill="#E4EBF4" bioc:stroke="#5F7898" color:background-color="#E4EBF4" color:border-color="#5F7898"><dc:Bounds x="1182.5" y="239" width="160" height="92" /><bpmndi:BPMNLabel color:color="#1F2933" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T5_di" bpmnElement="T5" bioc:fill="#ECE7F3" bioc:stroke="#7D6E9A" color:background-color="#ECE7F3" color:border-color="#7D6E9A"><dc:Bounds x="1182.5" y="29" width="160" height="92" /><bpmndi:BPMNLabel color:color="#1F2933" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T6_di" bpmnElement="T6" bioc:fill="#ECE7F3" bioc:stroke="#7D6E9A" color:background-color="#ECE7F3" color:border-color="#7D6E9A"><dc:Bounds x="1367.5" y="29" width="160" height="92" /><bpmndi:BPMNLabel color:color="#1F2933" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T7_di" bpmnElement="T7" bioc:fill="#E4EBF4" bioc:stroke="#5F7898" color:background-color="#E4EBF4" color:border-color="#5F7898"><dc:Bounds x="1367.5" y="239" width="160" height="92" /><bpmndi:BPMNLabel color:color="#1F2933" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T8_di" bpmnElement="T8" bioc:fill="#ECE7F3" bioc:stroke="#7D6E9A" color:background-color="#ECE7F3" color:border-color="#7D6E9A"><dc:Bounds x="1552.5" y="29" width="160" height="92" /><bpmndi:BPMNLabel color:color="#1F2933" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="E1_di" bpmnElement="E1" bioc:fill="#F4E3E1" bioc:stroke="#9A5F58" color:background-color="#F4E3E1" color:border-color="#9A5F58"><dc:Bounds x="1799.5" y="57" width="36" height="36" /><bpmndi:BPMNLabel color:color="#1F2933"><dc:Bounds x="1752.5" y="99" width="130" height="34" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="170.5" y="75" /><di:waypoint x="257.5" y="75" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="337.5" y="121" /><di:waypoint x="337.5" y="239" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_3_di" bpmnElement="Flow_3" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="417.5" y="285" /><di:waypoint x="497.5" y="285" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_4_di" bpmnElement="Flow_4" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="522.5" y="310" /><di:waypoint x="522.5" y="337" /><bpmndi:BPMNLabel color:color="#1F2933"><dc:Bounds x="528.5" y="316" width="28" height="16" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_5_di" bpmnElement="Flow_5" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="547.5" y="285" /><di:waypoint x="682.5" y="285" /><bpmndi:BPMNLabel color:color="#1F2933"><dc:Bounds x="555.5" y="267" width="28" height="16" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_6_di" bpmnElement="Flow_6" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="707.5" y="260" /><di:waypoint x="707.5" y="219" /><di:waypoint x="812.5" y="219" /><bpmndi:BPMNLabel color:color="#1F2933"><dc:Bounds x="713.5" y="238" width="28" height="16" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_7_di" bpmnElement="Flow_7" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="707.5" y="310" /><di:waypoint x="707.5" y="351" /><di:waypoint x="812.5" y="351" /><bpmndi:BPMNLabel color:color="#1F2933"><dc:Bounds x="713.5" y="316" width="28" height="16" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_8_di" bpmnElement="Flow_8" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="972.5" y="219" /><di:waypoint x="1077.5" y="219" /><di:waypoint x="1077.5" y="260" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_9_di" bpmnElement="Flow_9" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="972.5" y="351" /><di:waypoint x="1077.5" y="351" /><di:waypoint x="1077.5" y="310" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_di" bpmnElement="Flow_10" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="1102.5" y="285" /><di:waypoint x="1182.5" y="285" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11_di" bpmnElement="Flow_11" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="1262.5" y="239" /><di:waypoint x="1262.5" y="121" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12_di" bpmnElement="Flow_12" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="1342.5" y="75" /><di:waypoint x="1367.5" y="75" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13_di" bpmnElement="Flow_13" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="1447.5" y="121" /><di:waypoint x="1447.5" y="239" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14_di" bpmnElement="Flow_14" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="1527.5" y="285" /><di:waypoint x="1632.5" y="285" /><di:waypoint x="1632.5" y="121" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15_di" bpmnElement="Flow_15" bioc:stroke="#3F4A57" color:border-color="#3F4A57"><di:waypoint x="1712.5" y="75" /><di:waypoint x="1799.5" y="75" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Message_1_di" bpmnElement="Message_1" bioc:stroke="#5B6573" color:border-color="#5B6573"><di:waypoint x="337.5" y="-80" /><di:waypoint x="337.5" y="29" /><bpmndi:BPMNLabel color:color="#1F2933"><dc:Bounds x="345.5" y="-32.5" width="130" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Message_2_di" bpmnElement="Message_2" bioc:stroke="#5B6573" color:border-color="#5B6573"><di:waypoint x="1632.5" y="29" /><di:waypoint x="1632.5" y="-80" /><bpmndi:BPMNLabel color:color="#1F2933"><dc:Bounds x="1640.5" y="-32.5" width="130" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -2,20 +2,16 @@
   "name": "it-project-diagrams",
   "private": true,
   "type": "module",
-  "description": "Рендер диаграмм: diagrams/src -> diagrams/svg, diagrams/png и альбом PDF",
+  "description": "Экспорт диаграмм diagrams/src -> diagrams/svg, diagrams/png и сборка альбома PDF",
   "scripts": {
-    "render": "node render.mjs",
+    "export": "node export.mjs",
     "pdf": "node make-pdf.mjs",
-    "build": "node render.mjs && node make-pdf.mjs",
-    "check": "node check/overlaps.mjs && node check/contrast.mjs && python3 check/readability.py"
+    "build": "node export.mjs && node make-pdf.mjs"
   },
   "devDependencies": {
-    "bpmn-js": "^18.31.0",
-    "harfbuzzjs": "^1.6.4",
-    "libavoid-js": "^0.5.0-beta.5",
-    "pdf-lib": "^1.17.1",
-    "playwright": "1.63.0",
-    "subset-font": "^2.9.0",
-    "wawoff2": "^2.0.1"
+    "bpmn-js": "18.6.1",
+    "marked": "15.0.7",
+    "pdf-lib": "1.17.1",
+    "playwright": "1.63.0"
   }
 }
